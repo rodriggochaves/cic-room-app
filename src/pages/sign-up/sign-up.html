@@ -1,0 +1,32 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Cadastra-se</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div formGroupName="user">
+      <ion-label color="primary" stacked>Nome Completo</ion-label>
+      <ion-input formControlName="username" type="text"></ion-input>
+      <hr>
+
+      <ion-label color="primary" stacked>E-mail</ion-label>
+      <ion-input formControlName="email" type="email"></ion-input>
+      <hr>
+
+      <ion-label color="primary" stacked>Senha</ion-label>
+      <ion-input formControlName="password" type="password"></ion-input>
+      <hr>
+
+      <ion-label color="primary" stacked>Confirmação de Senha</ion-label>
+      <ion-input formControlName="passwordConfirmation" type="password"></ion-input>
+      <hr>
+
+      <button ion-button full>Cadastra-se</button>
+    </div>
+  </form>
+</ion-content>
