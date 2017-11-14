@@ -11,7 +11,6 @@ import { SignUpPage } from '../pages/sign-up/sign-up';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
     HomePage,
     SignUpPage,
   ],
@@ -22,7 +21,6 @@ import { SignUpPage } from '../pages/sign-up/sign-up';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
     HomePage,
     SignUpPage
   ],
