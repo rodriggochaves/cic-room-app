@@ -6,8 +6,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
+
+// pages
 import { HomePage } from '../pages/home/home';
 import { SignUpPage } from '../pages/sign-up/sign-up';
+import { ListRoomPage } from '../pages/list-room/list-room';
 import { UserProvider } from '../providers/user/user';
 
 @NgModule({
@@ -15,6 +18,7 @@ import { UserProvider } from '../providers/user/user';
     MyApp,
     HomePage,
     SignUpPage,
+    ListRoomPage,
   ],
   imports: [
     BrowserModule,
@@ -25,7 +29,8 @@ import { UserProvider } from '../providers/user/user';
   entryComponents: [
     MyApp,
     HomePage,
-    SignUpPage
+    SignUpPage,
+    ListRoomPage,
   ],
   providers: [
     StatusBar,
