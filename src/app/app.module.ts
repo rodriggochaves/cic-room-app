@@ -15,6 +15,7 @@ import { WaitingRoomPage } from '../pages/waiting-room/waiting-room';
 
 // providers
 import { UserProvider } from '../providers/user/user';
+import { RoomProvider } from '../providers/room/room';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { UserProvider } from '../providers/user/user';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UserProvider
+    UserProvider,
+    RoomProvider
   ]
 })
 export class AppModule {}
