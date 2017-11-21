@@ -11,6 +11,9 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { SignUpPage } from '../pages/sign-up/sign-up';
 import { ListRoomPage } from '../pages/list-room/list-room';
+import { WaitingRoomPage } from '../pages/waiting-room/waiting-room';
+
+// providers
 import { UserProvider } from '../providers/user/user';
 
 @NgModule({
@@ -19,6 +22,7 @@ import { UserProvider } from '../providers/user/user';
     HomePage,
     SignUpPage,
     ListRoomPage,
+    WaitingRoomPage
   ],
   imports: [
     BrowserModule,
@@ -31,6 +35,7 @@ import { UserProvider } from '../providers/user/user';
     HomePage,
     SignUpPage,
     ListRoomPage,
+    WaitingRoomPage
   ],
   providers: [
     StatusBar,
