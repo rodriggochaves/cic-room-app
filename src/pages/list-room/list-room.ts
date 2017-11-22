@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 // other pages
 import { WaitingRoomPage } from '../../pages/waiting-room/waiting-room';
+import { NewRoomPage } from '../../pages/new-room/new-room';
 
 @IonicPage()
 @Component({
@@ -17,6 +18,10 @@ export class ListRoomPage {
 
   enterRoom() {
     this.navCtrl.push(WaitingRoomPage);
+  }
+
+  newRoomPage() {
+    this.navCtrl.push(NewRoomPage);
   }
 
 }

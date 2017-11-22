@@ -12,6 +12,7 @@ import { HomePage } from '../pages/home/home';
 import { SignUpPage } from '../pages/sign-up/sign-up';
 import { ListRoomPage } from '../pages/list-room/list-room';
 import { WaitingRoomPage } from '../pages/waiting-room/waiting-room';
+import { NewRoomPage } from '../pages/new-room/new-room';
 
 // providers
 import { UserProvider } from '../providers/user/user';
@@ -23,7 +24,8 @@ import { RoomProvider } from '../providers/room/room';
     HomePage,
     SignUpPage,
     ListRoomPage,
-    WaitingRoomPage
+    WaitingRoomPage,
+    NewRoomPage,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,8 @@ import { RoomProvider } from '../providers/room/room';
     HomePage,
     SignUpPage,
     ListRoomPage,
-    WaitingRoomPage
+    WaitingRoomPage,
+    NewRoomPage,
   ],
   providers: [
     StatusBar,
