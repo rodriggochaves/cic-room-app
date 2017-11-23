@@ -1,26 +1,106 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+# EndPoints necessários!
 
-## How to use this template
+### Listagem de Salas
 
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
+GET `/rooms`
 
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
+RESPONSE:
 
-### With the Ionic CLI:
-
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
-
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start myBlank blank
+```json
+{
+	rooms: [
+		{
+			 name: <String>,
+		     queueSize: <Number>
+	    },
+	    {
+		    name: <String>,
+	        queueSize: <Number>
+        }
+	    ...
+     ]
+}
 ```
 
-Then, to run it, cd into `myBlank` and run:
+###  Entrar na Sala
 
-```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
+POST `/rooms/enter`
+
+REQUEST:
+
+```json
+{
+	user: {
+		name: <String>
+	}
+}
 ```
 
-Substitute ios for android if not on a Mac.
+RESPONSE:
 
+```json
+{
+	room: {
+		id: <Number>
+		relativeQueue: <Number>
+	}
+}
+```
+
+### Sair da Sala
+
+DELETE `/rooms`
+
+```json
+{
+	user: {
+		id: <Number>
+	}
+}
+```
+
+### Criar Sala
+
+POST `/rooms`
+
+REQUEST
+```json
+{
+	room: {
+		description: <String>,
+		openningTime: <String>,
+		finalTime: <String>,
+		password: <String>
+	}
+}
+```
+
+RESPONSE `HTTP 200`
+```json
+{
+	room: {
+		description: <String>,
+		openningTime: <String>,
+		finalTime: <String>
+	}
+	queue: [
+		{
+			name: <String>,
+			position: <Number>
+		}
+		{
+			name: <String>,
+			position: <Number>
+		}
+		...
+	]
+}
+```
+
+
+RESPONSE `HTTP 401`
+```json
+{
+	error: 'True'
+}
+```

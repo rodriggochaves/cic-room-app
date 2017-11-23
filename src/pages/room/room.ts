@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the RoomPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { AlertController } from 'ionic-angular';
+import { ListRoomPage } from '../list-room/list-room';
 
 @IonicPage()
 @Component({
@@ -15,6 +10,36 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class RoomPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              public alertCtrl: AlertController) {}
+
+  exit() {
+    let alert = this.alertCtrl.create({
+      title: 'Tem certeza?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Sim!',
+          handler: () => {
+            let navTransition = alert.dismiss().then(() => {
+              this.navCtrl.setRoot(ListRoomPage);
+            });
+            return false;
+          }
+        }
+      ],
+    });
+
+    alert.present();
+  }
+
+
 
 }
