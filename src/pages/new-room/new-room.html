@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Nova Sala</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <br>
+    <ion-list no-lines>
+      <div formGroupName="room">
+        <ion-item>
+          <ion-label>Descrição</ion-label>
+          <ion-input type="text" formControlName="description"></ion-input>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label>Hora de Início</ion-label>
+          <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" formControlName="openingTime"></ion-datetime>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label>Hora de Fim</ion-label>
+          <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" formControlName="finalTime"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Senha</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+      </div>
+    </ion-list>
+
+    <div padding>
+      <button ion-button block>Ativar</button>
+    </div>
+  </form>
+
+</ion-content>

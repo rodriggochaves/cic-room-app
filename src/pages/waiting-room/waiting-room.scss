@@ -1,0 +1,36 @@
+.page-waiting-room {
+  .clock-wrapper {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .clock {
+    width: 250px;
+    height: 250px;
+    border-radius: 125px;
+    text-align: center;
+    line-height: 250px;
+    font-size: 90px;
+    color: white;
+  }
+
+  .long-wait {
+    background-color: green;
+  }
+
+  .wait {
+    background-color: orange;
+  }
+
+  .next-to-attend {
+    background-color: red;
+  }
+}
+
+.waiting-room-footer {
+  button.big {
+    height: 50px;
+  }
+}

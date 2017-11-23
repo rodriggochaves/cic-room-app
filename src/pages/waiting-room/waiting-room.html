@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Sala de Espera</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="page-waiting-room">
+  <div class="clock-wrapper">
+    <div class="clock {{timeColor}}">{{this.queueSize}}</div>
+  </div>
+</ion-content>
+
+<ion-footer class="waiting-room-footer">
+  <button ion-button full class="big" (click)="refresh()">Atualizar</button>
+  
+  <button ion-button full class="big" (click)="exit()" color="danger">Sair!</button>
+</ion-footer>
