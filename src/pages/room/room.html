@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Sala X</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="page-room">
+  <ion-card>
+    <ion-card-header>
+      Sala X
+    </ion-card-header>
+    <ion-card-content>
+      <div>
+        <b>Descrição: </b><span>{{description}}</span>
+      </div>
+      <div>
+        <b>Hora de Abrir: </b><span>{{openningTime}}</span>
+      </div>
+      <div>
+        <b>Hora de Fechar: </b><span>{{finalTime}}</span>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <br>
+
+  <ion-list no-lines>
+    <ion-item>
+      <span>1. Rodrigo Chaves</span>
+      <button ion-button class="float-left" color="secondary">
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
+    </ion-item>
+    <ion-item>
+      <span>2. Rebeca Baldomir</span>
+      <button ion-button class="float-left" color="secondary">
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
+    </ion-item>
+    <ion-item>
+      <span>3. Kilmer Luiz</span>
+      <button ion-button class="float-left" color="secondary">
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+</ion-content>
