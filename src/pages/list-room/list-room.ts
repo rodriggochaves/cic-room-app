@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 // other pages
 import { WaitingRoomPage } from '../../pages/waiting-room/waiting-room';
@@ -20,7 +21,8 @@ export class ListRoomPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public alertCtrl: AlertController,
-              private roomProvider: RoomProvider) {}
+              private roomProvider: RoomProvider,
+              private storage: Storage) {}
 
   ionViewWillEnter() {
     this.roomProvider.all().subscribe( data => {
@@ -47,7 +49,8 @@ export class ListRoomPage {
             // enviar requisicao para o server com a pessoa entrando na sala
             this.roomProvider.enter(roomId, data.name).subscribe( data => {
               alert.dismiss().then(() => {
-                this.navCtrl.setRoot(WaitingRoomPage);
+                this.storeRoomId(data);
+                this.navCtrl.setRoot(WaitingRoomPage, { relativeQueue: data.relativeQueue });
               });
             }, err => {
               console.log(err);
@@ -59,6 +62,10 @@ export class ListRoomPage {
     });
 
     alert.present();
+  }
+
+  storeRoomId( queuePosition: any ) {
+    this.storage.set("queuePosition", queuePosition);
   }
  
   newRoomPage() {

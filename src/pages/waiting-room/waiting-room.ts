@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 // pages
 import { RoomProvider } from '../../providers/room/room';
@@ -16,12 +17,17 @@ export class WaitingRoomPage {
 
   timeColor: String;
   queueSize: number;
+  queuePosition: any;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public roomProvider: RoomProvider,
-              public alertCtrl: AlertController,) {
-    this.queueSize = 10;
+              public alertCtrl: AlertController,
+              private storage: Storage) {
+    this.storage.get('queuePosition').then( data => {
+      this.queuePosition = data;
+      this.queueSize = this.queuePosition.relativeQueue;
+    });
   }
 
   refresh() {
@@ -58,7 +64,9 @@ export class WaitingRoomPage {
         {
           text: 'Sim!',
           handler: () => {
-            let navTransition = alert.dismiss().then(() => {
+            // this.roomProvider.exit()
+            this.storage.remove('queuePosition');
+            alert.dismiss().then(() => {
               this.navCtrl.setRoot(ListRoomPage);
             });
             return false;

@@ -22,7 +22,7 @@ export class RoomProvider {
     });
   }
 
-  enter( roomId: number, username: string ): Observable<Response> {
+  enter( roomId: number, username: string ): Observable<any> {
     let headers = new Headers({ 
       "Content-Type": "application/json",
     });
