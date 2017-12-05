@@ -5,6 +5,7 @@ import { AlertController } from 'ionic-angular';
 // other pages
 import { WaitingRoomPage } from '../../pages/waiting-room/waiting-room';
 import { NewRoomPage } from '../../pages/new-room/new-room';
+import { RoomProvider } from '../../providers/room/room';
 
 @IonicPage()
 @Component({
@@ -14,11 +15,21 @@ import { NewRoomPage } from '../../pages/new-room/new-room';
 
 export class ListRoomPage {
 
+  rooms: any;
+
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              public alertCtrl: AlertController) {}
+              public alertCtrl: AlertController,
+              private roomProvider: RoomProvider) {}
 
-  enterRoom() {
+  ionViewWillEnter() {
+    this.roomProvider.all().subscribe( data => {
+      data = JSON.parse(data.text())
+      this.rooms = data.rooms;
+    });
+  }
+
+  enterRoom( roomId: number ) {
     let alert = this.alertCtrl.create({
       title: 'Confirme sua entrada!',
       inputs: [ { name: 'name', placeholder: 'Nome' } ],
@@ -34,8 +45,12 @@ export class ListRoomPage {
           text: 'Entrar!',
           handler: data => {
             // enviar requisicao para o server com a pessoa entrando na sala
-            let navTransition = alert.dismiss().then(() => {
-              this.navCtrl.setRoot(WaitingRoomPage);
+            this.roomProvider.enter(roomId, data.name).subscribe( data => {
+              alert.dismiss().then(() => {
+                this.navCtrl.setRoot(WaitingRoomPage);
+              });
+            }, err => {
+              console.log(err);
             });
             return false;
           }
@@ -45,7 +60,7 @@ export class ListRoomPage {
 
     alert.present();
   }
-
+ 
   newRoomPage() {
     this.navCtrl.push(NewRoomPage);
   }

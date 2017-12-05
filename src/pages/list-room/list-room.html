@@ -7,15 +7,13 @@
 
 <ion-content class="page-list-room" padding>
   <ion-list no-lines>
-    <ion-item (click)="enterRoom()">
-      <div>Rodrigo Bonifácio</div>
-      <ion-badge item-end>12</ion-badge>
-    </ion-item>
+    <div *ngFor="let room of rooms">
+      <ion-item (click)="enterRoom(room.id)">
+        <div>{{room.description}}</div>
+        <ion-badge item-end>{{room.relativeQueue}}</ion-badge>
+      </ion-item>
+    </div>
 
-    <ion-item>
-      <div>Ricardo Jacobi</div>
-      <ion-badge item-end>2</ion-badge>
-    </ion-item>
   </ion-list>
 
   <div class="corner">
