@@ -64,10 +64,13 @@ export class WaitingRoomPage {
         {
           text: 'Sim!',
           handler: () => {
-            // this.roomProvider.exit()
-            this.storage.remove('queuePosition');
-            alert.dismiss().then(() => {
-              this.navCtrl.setRoot(ListRoomPage);
+            this.roomProvider.exit(this.queuePosition.queueId).subscribe( data => {
+              this.storage.remove('queuePosition');
+              alert.dismiss().then(() => {
+                this.navCtrl.setRoot(ListRoomPage);
+              });
+            }, _ => {
+              alert.dismiss()
             });
             return false;
           }

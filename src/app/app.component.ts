@@ -6,6 +6,7 @@ import { Storage } from '@ionic/storage';
 
 import { ListRoomPage } from '../pages/list-room/list-room';
 import { WaitingRoomPage } from '../pages/waiting-room/waiting-room';
+import { RoomPage } from '../pages/room/room';
 
 @Component({
   templateUrl: 'app.html'
@@ -24,6 +25,11 @@ export class MyApp {
     }).then( data => {
       if ( data && data.roomId ) {
         this.rootPage = WaitingRoomPage;
+      }
+      return this.storage.get('roomInfo')
+    }).then( data => {
+      if ( data && data.roomId ) {
+        this.rootPage = RoomPage;
       }
     });
   }
