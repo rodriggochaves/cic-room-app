@@ -31,8 +31,19 @@ export class WaitingRoomPage {
   }
 
   refresh() {
-    this.roomProvider.refreshRoom(2).subscribe( remaning => {
-      this.queueSize = remaning;
+    let roomId = this.queuePosition.roomId;
+    let queueId = this.queuePosition.queueId;
+    this.roomProvider.refreshRoom(roomId, queueId).subscribe( data => {
+      if ( data.position == 0) {
+        let alert = this.alertCtrl.create({
+          title: 'Você já foi atendido',
+          buttons: ['ok!']
+        });
+        alert.present();
+        this.navCtrl.setRoot(ListRoomPage);
+      } else {
+        this.queueSize = data.position;
+      }
     });
   }
 

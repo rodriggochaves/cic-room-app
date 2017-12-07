@@ -1,11 +1,11 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Sala X</ion-title>
+    <ion-title>Sala {{room?.description}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding class="page-room">
-  <ion-card>
+  <!-- <ion-card>
     <ion-card-header>
       Sala X
     </ion-card-header>
@@ -20,54 +20,19 @@
         <b>Hora de Fechar: </b><span>{{finalTime}}</span>
       </div>
     </ion-card-content>
-  </ion-card>
+  </ion-card> -->
 
   <br>
 
   <ion-list no-lines>
-    <ion-item>
-      <span>1. Rodrigo Chaves</span>
-      <button ion-button class="float-left" color="secondary">
-        <ion-icon name="checkmark"></ion-icon>
-      </button>
-    </ion-item>
-    <ion-item>
-      <span>2. Rebeca Baldomir</span>
-      <button ion-button class="float-left" color="secondary">
-        <ion-icon name="checkmark"></ion-icon>
-      </button>
-    </ion-item>
-    <ion-item>
-      <span>3. Kilmer Luiz</span>
-      <button ion-button class="float-left" color="secondary">
-        <ion-icon name="checkmark"></ion-icon>
-      </button>
-    </ion-item>
-    <ion-item>
-      <span>4. Diogo</span>
-      <button ion-button class="float-left" color="secondary">
-        <ion-icon name="checkmark"></ion-icon>
-      </button>
-    </ion-item>
-    <ion-item>
-      <span>5. Sarah Almeida</span>
-      <button ion-button class="float-left" color="secondary">
-        <ion-icon name="checkmark"></ion-icon>
-      </button>
-    </ion-item>
-    <ion-item>
-      <span>6. Carolina Almeida</span>
-      <button ion-button class="float-left" color="secondary">
-        <ion-icon name="checkmark"></ion-icon>
-      </button>
-    </ion-item>
-    <ion-item>
-      <span>7. Pudim Augusto</span>
-      <button ion-button class="float-left" color="secondary">
+    <ion-item *ngFor="let student of students; index as i">
+      <span>{{i + 1}}. {{student.username}}</span>
+      <button ion-button class="float-left" color="secondary" (click)="attend(student.id)" >
         <ion-icon name="checkmark"></ion-icon>
       </button>
     </ion-item>
   </ion-list>
 
+  <button ion-button full class="big" (click)="update()" color="primary">Atualizar!</button>
   <button ion-button full class="big" (click)="exit()" color="danger">Fechar Sala!</button>
 </ion-content>

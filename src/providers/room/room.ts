@@ -6,15 +6,17 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class RoomProvider {
 
-  url: string = "http://localhost:8080/api/rooms";
+  domain: string = "http://c0e64365.ngrok.io";
+  url: string = `${this.domain}/api/rooms`;
 
   constructor(public http: Http) {}
 
-  refreshRoom( roomId: number ) {
-    return Observable.create( observer => {
-      observer.next(9);
-      observer.complete();
+  refreshRoom( roomId: number, queueId: number ) : Observable<any> {
+    let headers = new Headers({
+      "Content-Type": "application/json",
     });
+    return this.http.get(`${this.url}/${roomId}/queues/${queueId}`, { headers })
+    .map( x => x.json() );
   }
 
   create( values: any ): Observable<any> {
@@ -31,20 +33,33 @@ export class RoomProvider {
       "Content-Type": "application/json",
     });
     let body = JSON.stringify({ user: { roomId: roomId, username: username } });
-    return this.http.post("http://localhost:8080/api/rooms/enter", body, { headers })
+    return this.http.post(`${this.url}/enter`, body, { headers })
     .map(x => x.json());
+  }
+
+  listUsers( roomId: number ): Observable<any> {
+    return this.http.get(`${this.url}/${roomId}/users`)
+    .map( x => x.json() );
   }
 
   exit( queueId: number ): Observable<any> {
     let headers = new Headers({
       "Content-Type": "application/json",
     });
-    return this.http.delete(`http://localhost:8080/api/rooms/exit/${queueId}`, { headers })
+    return this.http.delete(`${this.url}/exit/${queueId}`, { headers })
     .map(x => x.json());
   } 
 
   all(): Observable<any> {
-    return this.http.get("http://localhost:8080/api/rooms");
+    return this.http.get(`${this.url}`);
+  }
+
+  close( id: number ): Observable<any> {
+    let headers = new Headers({
+      "Content-Type": "application/json",
+    });
+    return this.http.delete(`${this.url}/${id}`, { headers })
+    .map(x => x.json());
   }
 
 }

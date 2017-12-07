@@ -37,8 +37,9 @@ export class NewRoomPage {
     if( this.password === "password" ) {
       this.roomProvider.create(this.form.value)
       .subscribe( data => {
-        this.storage.set('roomInfo', { roomId: data.id });
-        this.navCtrl.setRoot(RoomPage, { roomId: data.id });
+        let room = data.room
+        this.storage.set('roomInfo', { room: room });
+        this.navCtrl.setRoot(RoomPage, { room: room });
       });
     } else {
       let alert = this.alertCtrl.create({

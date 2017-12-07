@@ -48,12 +48,12 @@ export class ListRoomPage {
           handler: data => {
             // enviar requisicao para o server com a pessoa entrando na sala
             this.roomProvider.enter(roomId, data.name).subscribe( data => {
-              alert.dismiss().then(() => {
+              alert.dismiss().then( _ => {
                 this.storeRoomId(data);
                 this.navCtrl.setRoot(WaitingRoomPage, { relativeQueue: data.relativeQueue });
               });
             }, err => {
-              console.log(err);
+              console.log(`Error: ${err}`);
             });
             return false;
           }

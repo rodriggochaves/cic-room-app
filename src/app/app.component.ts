@@ -28,7 +28,7 @@ export class MyApp {
       }
       return this.storage.get('roomInfo')
     }).then( data => {
-      if ( data && data.roomId ) {
+      if ( data && data.room.id ) {
         this.rootPage = RoomPage;
       }
     });
