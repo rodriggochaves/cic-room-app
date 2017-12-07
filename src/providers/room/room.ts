@@ -7,7 +7,8 @@ import { Observable } from 'rxjs/Observable';
 export class RoomProvider {
 
   domain: string = "http://c0e64365.ngrok.io";
-  url: string = `${this.domain}/api/rooms`;
+  roomUrl: string = `${this.domain}/api/rooms`;
+  queueUrl: string = `${this.domain}/api/queues`;
 
   constructor(public http: Http) {}
 
@@ -15,7 +16,7 @@ export class RoomProvider {
     let headers = new Headers({
       "Content-Type": "application/json",
     });
-    return this.http.get(`${this.url}/${roomId}/queues/${queueId}`, { headers })
+    return this.http.get(`${this.roomUrl}/${roomId}/queues/${queueId}`, { headers })
     .map( x => x.json() );
   }
 
@@ -24,7 +25,7 @@ export class RoomProvider {
       "Content-Type": "application/json",
     });
     let body = JSON.stringify( values );
-    return this.http.post(this.url, body, { headers })
+    return this.http.post(this.roomUrl, body, { headers })
     .map(x => x.json())
   }
 
@@ -32,13 +33,13 @@ export class RoomProvider {
     let headers = new Headers({ 
       "Content-Type": "application/json",
     });
-    let body = JSON.stringify({ user: { roomId: roomId, username: username } });
-    return this.http.post(`${this.url}/enter`, body, { headers })
+    let body = JSON.stringify({ queue: { roomId: roomId, username: username } });
+    return this.http.post(`${this.queueUrl}/`, body, { headers })
     .map(x => x.json());
   }
 
   listUsers( roomId: number ): Observable<any> {
-    return this.http.get(`${this.url}/${roomId}/users`)
+    return this.http.get(`${this.roomUrl}/${roomId}/users`)
     .map( x => x.json() );
   }
 
@@ -46,19 +47,20 @@ export class RoomProvider {
     let headers = new Headers({
       "Content-Type": "application/json",
     });
-    return this.http.delete(`${this.url}/exit/${queueId}`, { headers })
+    return this.http.delete(`${this.queueUrl}/${queueId}`, { headers })
     .map(x => x.json());
   } 
 
   all(): Observable<any> {
-    return this.http.get(`${this.url}`);
+    return this.http.get(`${this.roomUrl}`)
+    .map( x => x.json());
   }
 
   close( id: number ): Observable<any> {
     let headers = new Headers({
       "Content-Type": "application/json",
     });
-    return this.http.delete(`${this.url}/${id}`, { headers })
+    return this.http.delete(`${this.roomUrl}/${id}`, { headers })
     .map(x => x.json());
   }
 

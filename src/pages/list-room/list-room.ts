@@ -26,7 +26,12 @@ export class ListRoomPage {
 
   ionViewWillEnter() {
     this.roomProvider.all().subscribe( data => {
-      data = JSON.parse(data.text())
+      this.rooms = data.rooms;
+    });
+  }
+
+  refresh() {
+    this.roomProvider.all().subscribe(data => {
       this.rooms = data.rooms;
     });
   }
